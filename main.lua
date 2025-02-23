@@ -82,11 +82,11 @@ setmetatable(game.HttpService, {
 			warn(`HttpService->{k} <<`, args)
 			if t == self then -- namecall
 				local result = value(_http, select(2, ...))
-				warn(`HttpService->{k} <<`, args, ">>" result)
+				warn(`HttpService->{k} <<`, args, ">>", result)
 				return result
 			else -- index
 				local result = value(...)
-				warn(`HttpService->{k} <<`, args, ">>" result)
+				warn(`HttpService->{k} <<`, args, ">>", result)
 				return result
 			end
 
