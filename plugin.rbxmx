@@ -1,0 +1,51 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Script" referent="RBX0D7C2EBBDF5949108A9492391F2D2537">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+			<bool name="DefinesCapabilities">false</bool>
+			<bool name="Disabled">false</bool>
+			<Content name="LinkedSource"><null></null></Content>
+			<string name="Name">Script</string>
+			<token name="RunContext">3</token>
+			<string name="ScriptGuid">{313F1236-8940-4E33-9036-57AB63F70D53}</string>
+			<ProtectedString name="Source"><![CDATA[local Selection = game:GetService("Selection")
+local HttpService = game:GetService("HttpService")
+
+local Interface = plugin:CreateToolbar("VM")
+
+local Button = Interface:CreateButton("Virtualize", "", "http://www.roblox.com/asset/?id=72875773659485")
+Button.ClickableWhenViewportHidden = true
+
+
+
+
+Button.Click:Connect(function()
+	local main = Selection:Get()[1]
+	
+	local Success, VM = pcall(function()
+		return HttpService:GetAsync("https://raw.githubusercontent.com/SentryLN/lua-virtual-env/refs/heads/main/main.lua")
+	end)
+	assert(Success, "failed to read virtual env")
+	
+	for index, value in pairs({main, unpack(main:GetDescendants())}) do
+		if value:IsA("Script") or value:IsA("ModuleScript") then
+			local code = value.Source:gsub("%-%-%[.-%]%]", "")
+			local len = #code
+			if len >= 200000-#VM then
+				warn( 200000-#VM)
+				warn(value:GetFullName(), "len:", len, ", length issue. virtualize skipped")
+				continue
+			end
+			value.Source = VM .. "\n\n" .. code
+		end
+	end
+	warn("all done!")
+end)]]></ProtectedString>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+		</Properties>
+	</Item>
+</roblox>
