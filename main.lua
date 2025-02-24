@@ -112,8 +112,7 @@ setmetatable(game, {
 			local value = _game[k]
 			local args = {...}
 			local self = args[1]
-
-			print(`HttpService->{k} <<`, args)
+			
 			if t == self then -- namecall
 				return value(_game, select(2, ...))
 			else -- index
