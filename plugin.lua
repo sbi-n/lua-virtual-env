@@ -7,13 +7,14 @@ local Button = Interface:CreateButton("Virtualize", "", "http://www.roblox.com/a
 Button.ClickableWhenViewportHidden = true
 
 local Regulations = {
-	"%-%-%[.-%]%]",
-	"%-%-.-\n"
+	{ "%-%-%[.-%]%]", "" },
+	{ "%-%-.-\n", "" },
+	{ "(=)%s*%[%[(.-)%]%]", "%1 [[]]" }
 }
 local function ClearDump(code)
 	local result = code
 	for steps, reg in pairs(Regulations) do
-		result = string.gsub(result, reg, "")
+		result = string.gsub(result, unpack(reg))
 	end
 	return result
 end
