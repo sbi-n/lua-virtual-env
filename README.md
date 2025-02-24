@@ -1,2 +1,2 @@
-# 로블록스 스튜디오에 있는 프리모델 바이러스
-를 조사해서 흔히 서버사이드 백도어라 불리는거 다 없애버릴려고
+# Lua VE
+Lua VE (Lua Virtual Environment) is a tool designed to analyze obfuscated Lua code by hooking the functions called within the code to help understand its purpose and behavior. This approach is particularly useful for analyzing and removing server-side backdoors (commonly known as Server-Side Backdoors) or malicious scripts (Viruses) frequently found on the Roblox platform.
