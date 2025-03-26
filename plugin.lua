@@ -11,7 +11,7 @@ local Regulations = {
 	{ "%-%-.-\n", "" },
 	{ "(=)%s*%[%[(.-)%]%]", "%1 [[]]" }
 }
-local function ClearDump(code)
+local function ClearComments(code)
 	local result = code
 	for steps, reg in pairs(Regulations) do
 		result = string.gsub(result, unpack(reg))
@@ -31,7 +31,7 @@ Button.Click:Connect(function()
 
 		for index, value in pairs({victim, unpack(victim:GetDescendants())}) do
 			if not (value:IsA("Script") or value:IsA("ModuleScript")) then continue end
-			local code = ClearDump(value.Source)
+			local code = ClearComments(value.Source)
 			local lenCode = #code
 			local lenTotal = lenVM+lenCode
 			if lenTotal >= 200000 then
