@@ -26,7 +26,7 @@ Button.Click:Connect(function()
 	end)
 	assert(Success, "failed to read virtual env")
 	for steps, victim in pairs(Selection:Get()) do
-		VM = ClearDump(VM.."\n")
+		VM = ClearComments(VM.."\n")
 		local lenVM = #VM
 
 		for index, value in pairs({victim, unpack(victim:GetDescendants())}) do
