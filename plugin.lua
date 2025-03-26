@@ -1,7 +1,7 @@
 local Selection = game:GetService("Selection")
 local HttpService = game:GetService("HttpService")
 
-local Interface = plugin:CreateToolbar("VM")
+local Interface = plugin:CreateToolbar("VE")
 
 local Button = Interface:CreateButton("Virtualize", "", "http://www.roblox.com/asset/?id=72875773659485")
 Button.ClickableWhenViewportHidden = true
